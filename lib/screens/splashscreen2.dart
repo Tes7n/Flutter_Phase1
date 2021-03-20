@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/brand_colors.dart';
+import '../brand_colors.dart';
+
 
 class SplashScreen2 extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class SplashScreen2 extends StatefulWidget {
 
 class _SplashScreen2State extends State<SplashScreen2>
     with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+   AnimationController controller;
   double timervalue = 0.0;
 
   @override

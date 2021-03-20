@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'splashscreen2.dart';
+import 'package:flutter_1nep/screens/splashscreen2.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -14,19 +15,13 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       Duration(seconds: 3),
       () {
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => SplashScreen2()),
-        // );
+
         Navigator.push(
             context,
             PageRouteBuilder(
               pageBuilder: (_, __, ___) => SplashScreen2(),
               transitionDuration: Duration(seconds: 2),
             )
-            // MaterialPageRoute(
-            //   builder: (context) => SplashScreen2(),
-            // ),
             );
       },
     );
