@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "896832785571",
+    "project_id": "otpscreen-22336",
+    "storage_bucket": "otpscreen-22336.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896832785571:android:04a3b909b3e0c0baffc316",
+        "android_client_info": {
+          "package_name": "com.example.flutter_1nep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896832785571-5bi4ppr1qq1c85trohh9okdh5e7k119i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBECs0f_qBCVRO5Hrar13CXgUZe-fmSd3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896832785571-5bi4ppr1qq1c85trohh9okdh5e7k119i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

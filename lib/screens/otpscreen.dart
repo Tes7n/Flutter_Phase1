@@ -1,8 +1,11 @@
 // import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_1nep/screens/loadingscreen.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import '../brand_colors.dart';
+import 'home.dart';
 import 'loginpage.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -17,7 +20,8 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
-  // String _verificationCode;
+  String _verificationCode;
+  bool loading =false;
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
   final BoxDecoration pinPutDecoration = BoxDecoration(
@@ -30,7 +34,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return  loading ? LoadingScreen():SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
         resizeToAvoidBottomInset: false,
@@ -82,6 +86,31 @@ class _OtpScreenState extends State<OtpScreen> {
                           selectedFieldDecoration: pinPutDecoration,
                           followingFieldDecoration: pinPutDecoration,
                           pinAnimationType: PinAnimationType.fade,
+                          onSubmit: (pin) async {
+                            try {
+                              await FirebaseAuth.instance
+                                  .signInWithCredential(PhoneAuthProvider.credential(
+                                  verificationId: _verificationCode, smsCode: pin))
+                                  .then((value) async {
+                                    setState(() {
+                                      loading = true;
+                                    });
+                                if (value.user != null) {
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => Home()),
+                                          (route) => false);
+                                }
+                              });
+                            } catch (e) {
+                              setState(() {
+                                loading = false;
+                              });
+                              FocusScope.of(context).unfocus();
+                              _scaffoldkey.currentState
+                                  .showSnackBar(SnackBar(content: Text('invalid OTP')));
+                            }
+                          },
 
                         ),
                       ) ,
@@ -137,20 +166,13 @@ class _OtpScreenState extends State<OtpScreen> {
                           horizontal: 60, vertical: 0.0),
                       child: TextButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => LoginPage()),
-                          // );
+
                           Navigator.push(
                               context,
                               PageRouteBuilder(
                                 pageBuilder: (_, __, ___) => LoginPage(),
                                 transitionDuration: Duration(seconds: 1),
-                              )
-                              // MaterialPageRoute(
-                              //   builder: (context) => SplashScreen2(),
-                              // ),
+                              ),
                               );
                         },
                         style: ButtonStyle(
@@ -187,6 +209,45 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
       ),
     );
+  }
+
+  _verifyPhone() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+91${widget.phone}',
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await FirebaseAuth.instance
+              .signInWithCredential(credential)
+              .then((value) async {
+            if (value.user != null) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                      (route) => false);
+            }
+          });
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print(e.message);
+        },
+        codeSent: (String verficationID, int resendToken) {
+          setState(() {
+            _verificationCode = verficationID;
+          });
+          print('codesent!');
+        },
+        codeAutoRetrievalTimeout: (String verificationID) {
+          setState(() {
+            _verificationCode = verificationID;
+          });
+        },
+        timeout: Duration(seconds: 120));
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _verifyPhone();
   }
 
 }

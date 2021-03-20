@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_1nep/screens/loginpage.dart';
 import '../brand_colors.dart';
 
 
@@ -27,6 +30,20 @@ class _SplashScreen2State extends State<SplashScreen2>
         timervalue = (controller.value);
       });
     });
+
+    Timer(
+      Duration(seconds: 5),
+          () {
+
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => LoginPage(),
+              transitionDuration: Duration(seconds: 2),
+            )
+        );
+      },
+    );
   }
 
   @override

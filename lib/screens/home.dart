@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:phone_verification/login.dart';
+import 'package:flutter_1nep/brand_colors.dart';
 
-import 'login.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,32 +9,30 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
+
   String uid;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                  (route) => false);
-            },
-          )
-        ],
-      ),
+    return SafeArea(
+        child: Scaffold(
       body: Center(
-        child: Text("Success"
-                "  " +
-            uid),
+        child: Container(
+          constraints: BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('images/bg.png'), fit: BoxFit.cover),
+          ),
+          child: Center(
+            child: Text("Success"
+                    "  " +
+                uid,style: TextStyle(fontSize: 14,color: BrandColors.colorGreen2),),
+          ),
+        ),
       ),
-    );
+    ));
   }
 
   @override
@@ -45,3 +42,4 @@ class _HomeState extends State<Home> {
     uid = FirebaseAuth.instance.currentUser.uid;
   }
 }
+
