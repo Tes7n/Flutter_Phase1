@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_1nep/screens/home.dart';
 import 'package:flutter_1nep/screens/loginpage.dart';
 import '../brand_colors.dart';
 
@@ -34,14 +36,28 @@ class _SplashScreen2State extends State<SplashScreen2>
     Timer(
       Duration(seconds: 5),
           () {
+        FirebaseAuth.instance.authStateChanges().listen((User user) {
+          if (user ==null){
+            Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => Home(),
+                  transitionDuration: Duration(seconds: 2),
+                )
+            );
+          }
+          else{
+            Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => LoginPage(),
+                  transitionDuration: Duration(seconds: 2),
+                )
+            );
+          }
+        });
 
-        Navigator.push(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (_, __, ___) => LoginPage(),
-              transitionDuration: Duration(seconds: 2),
-            )
-        );
+
       },
     );
   }
