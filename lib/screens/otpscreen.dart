@@ -24,7 +24,7 @@ class _OtpScreenState extends State<OtpScreen> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   // UserServices _userServices = UserServices();
   // String _verificationCode;
-  bool loading = false;
+
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
   final BoxDecoration pinPutDecoration = BoxDecoration(
@@ -37,9 +37,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? LoadingScreen()
-        : SafeArea(
+    return  SafeArea(
             child: Scaffold(
               key: _scaffoldkey,
               resizeToAvoidBottomInset: false,
@@ -100,9 +98,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
                                    final User user = (await _auth.auth.signInWithCredential(phoneAuthCredential)).user;
                                   //loading
-                                   setState(() {
-                                    loading = true;
-                                  });
+                                  LoadingScreen.showLoadingDialog(context, _scaffoldkey);
                                    //create user data in firestore after registration
                                   _auth.createUser(user.uid,user.phoneNumber);
                                   //navigation
@@ -114,9 +110,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                             (route) => false);
 
                                 }} catch (e) {
-                                  setState(() {
-                                    loading = false;
-                                  });
+
                                   FocusScope.of(context).unfocus();
                                   _scaffoldkey.currentState.showSnackBar(
                                       SnackBar(content: Text('invalid OTP')));

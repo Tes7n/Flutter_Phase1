@@ -5,12 +5,12 @@ import '../brand_colors.dart';
 import '../constants.dart';
 
 
-class OnboardScreen extends StatefulWidget {
+class Onboard extends StatefulWidget {
   @override
   _OnboardScreenState createState() => _OnboardScreenState();
 }
 
-class _OnboardScreenState extends State<OnboardScreen> {
+class _OnboardScreenState extends State<Onboard> {
   final _controller = PageController(
     initialPage: 0,
   );
