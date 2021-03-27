@@ -1,13 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_1nep/provider/locationprovider.dart';
-import 'package:flutter_1nep/screens/home.dart';
-import 'package:flutter_1nep/screens/loadingscreen.dart';
-import 'package:flutter_1nep/screens/loginpage.dart';
-import 'package:flutter_1nep/screens/onboard.dart';
-import 'package:flutter_1nep/screens/onboardscreen.dart';
-import 'package:flutter_1nep/screens/otpscreen.dart';
-import 'package:flutter_1nep/screens/splashscreen.dart';
+import 'package:flutter_1nep/screens/startscreen.dart';
+import 'package:flutter_1nep/screens/homestack.dart';
+import 'package:flutter_1nep/screens/homestack.dart';
+import 'package:flutter_1nep/screens/customwidgets/loadingscreen.dart';
+import 'package:flutter_1nep/screens/start/verification/loginpage.dart';
+import 'package:flutter_1nep/screens/start/welcome/onboardscreen.dart';
+import 'package:flutter_1nep/screens/start/verification/otpscreen.dart';
+import 'package:flutter_1nep/screens/start/splashscreen/splashscreen.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -17,12 +19,13 @@ Future<void> main() async {
     ChangeNotifierProvider(
       create: (_) => LocationProvider(),
     ),
+
   ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: OnBoardScreen());
+    return MaterialApp(home: StartScreen());
   }
 }

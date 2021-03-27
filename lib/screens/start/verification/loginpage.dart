@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_1nep/brand_colors.dart';
-import 'package:flutter_1nep/screens/otpscreen.dart';
+import 'package:flutter_1nep/screens/customwidgets/brand_colors.dart';
+import 'package:flutter_1nep/screens/start/verification/otpscreen.dart';
 
 // import 'package:firebase_database/firebase_database.dart';
 

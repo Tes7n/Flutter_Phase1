@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_1nep/brand_colors.dart';
+import 'package:flutter_1nep/screens/customwidgets/brand_colors.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen {

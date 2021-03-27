@@ -1,8 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 
-import '../brand_colors.dart';
-import '../constants.dart';
+import 'brand_colors.dart';
+import 'constants.dart';
 
 
 class Onboard extends StatefulWidget {

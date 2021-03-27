@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_1nep/screens/home.dart';
-import 'package:flutter_1nep/screens/loginpage.dart';
-import '../brand_colors.dart';
+import 'package:flutter_1nep/screens/homestack.dart';
+import 'package:flutter_1nep/screens/start/verification/loginpage.dart';
+import '../../customwidgets/brand_colors.dart';
 
 
 class SplashScreen2 extends StatefulWidget {
@@ -41,7 +41,7 @@ class _SplashScreen2State extends State<SplashScreen2>
             Navigator.push(
                 context,
                 PageRouteBuilder(
-                  pageBuilder: (_, __, ___) => Home(),
+                  pageBuilder: (_, __, ___) => LoginPage(),
                   transitionDuration: Duration(seconds: 2),
                 )
             );

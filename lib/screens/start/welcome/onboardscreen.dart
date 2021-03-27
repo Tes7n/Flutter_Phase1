@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_1nep/screens/customwidgets/onboard.dart';
 import 'package:flutter_1nep/provider/locationprovider.dart';
-import 'package:flutter_1nep/screens/loadingscreen.dart';
-import 'package:flutter_1nep/screens/loginpage.dart';
+import 'package:flutter_1nep/screens/customwidgets/loadingscreen.dart';
+import 'package:flutter_1nep/screens/start/verification/loginpage.dart';
 import 'package:flutter_1nep/screens/mapscreen.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-import '../brand_colors.dart';
-import 'onboard.dart';
+import '../../customwidgets/brand_colors.dart';
 
 class OnBoardScreen extends StatefulWidget {
   @override

@@ -20,6 +20,7 @@ class BrandColors {
 
   static const Color colorGreen = Color(0xFFc8e7d6);
   static const Color colorGreen2 = Color(0xFFc8f4d0);
+  static const Color colorGreen3 = Color(0xFF71ad8a);
   static const Color colorMPeach = Color(0xFFffe3d5);
   static const Color colorMblue = Color(0xFFe2edf6);
   static const Color colorMyellow = Color(0xFFf7e4cd);
@@ -27,4 +28,5 @@ class BrandColors {
   static const Color colorLightGray = Color(0xFFe2e2e2);
   static const Color colorLightGrayFair = Color(0xFFe1e5e8);
   static const Color colorDimText = Color(0xFFadadad);
+  static const Color bg = Color(0xFF242428);
 }

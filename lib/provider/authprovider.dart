@@ -12,50 +12,49 @@ class AuthProvider {
 
   //PhoneAuthentication
 
-Future phoneAuthentication(String phone) async{
+  Future phoneAuthentication(String phone) async {
+    final PhoneVerificationCompleted verificationCompleted = (
+        PhoneAuthCredential credential) async {
+      await auth
+          .signInWithCredential(credential);
+    };
 
-  final PhoneVerificationCompleted verificationCompleted= (PhoneAuthCredential credential) async {
-    await auth
-        .signInWithCredential(credential);
-  };
+    final PhoneVerificationFailed verificationFailed = (
+        FirebaseAuthException e) {
+      print(e.code);
+    };
 
-  final PhoneVerificationFailed verificationFailed = (FirebaseAuthException e) {
-    print(e.code);
-  };
+    final PhoneCodeSent codeSent = (String verID, int resendToken) async {
+      verificationId = verID;
 
-  final PhoneCodeSent codeSent = (String verID, int resendToken) async{
+      print('codesent!');
+    };
 
-    verificationId = verID;
-
-    print('codesent!');
-  };
-
-  final PhoneCodeAutoRetrievalTimeout phoneCodeAutoRetrievalTimeout = (String verificationID) {
-
-    verificationId = verificationID;
-
-  };
+    final PhoneCodeAutoRetrievalTimeout phoneCodeAutoRetrievalTimeout = (
+        String verificationID) {
+      verificationId = verificationID;
+    };
 
 
-  try{
-    auth.verifyPhoneNumber(phoneNumber: '+91${phone}',
-        verificationCompleted: verificationCompleted,
-        verificationFailed: verificationFailed,
-        codeSent: codeSent,
-        codeAutoRetrievalTimeout: phoneCodeAutoRetrievalTimeout,
-        timeout: Duration(seconds: 120));
-
+    try {
+      auth.verifyPhoneNumber(phoneNumber: '+91${phone}',
+          verificationCompleted: verificationCompleted,
+          verificationFailed: verificationFailed,
+          codeSent: codeSent,
+          codeAutoRetrievalTimeout: phoneCodeAutoRetrievalTimeout,
+          timeout: Duration(seconds: 120));
+    }
+    catch (e) {
+      print(e);
+    }
   }
-  catch(e){
-    print(e);
-  }
-}
+
 //method for creating user in firestore
-void createUser(String id,String phone){
-_userServices.createUserData({
-  'id':id,
-  'phone':phone
-});
-}
+  void createUser(String id, String phone) {
+    _userServices.createUserData({
+      'id': id,
+      'phone': phone
+    });
+  }
 
 }

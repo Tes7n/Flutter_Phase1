@@ -3,11 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_1nep/provider/authprovider.dart';
-import 'package:flutter_1nep/screens/loadingscreen.dart';
+import 'package:flutter_1nep/screens/customwidgets/loadingscreen.dart';
+import 'package:flutter_1nep/screens/startscreen.dart';
 import 'package:flutter_1nep/services/userservices.dart';
 import 'package:pinput/pin_put/pin_put.dart';
-import '../brand_colors.dart';
-import 'home.dart';
+import '../../customwidgets/brand_colors.dart';
+import '../../homestack.dart';
 import 'loginpage.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -106,7 +107,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
                                     Navigator.pushAndRemoveUntil(
                                         context,
-                                        MaterialPageRoute(builder: (context) => Home()),
+                                        MaterialPageRoute(builder: (context) => StartScreen()),
                                             (route) => false);
 
                                 }} catch (e) {
