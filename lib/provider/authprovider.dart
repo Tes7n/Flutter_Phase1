@@ -1,7 +1,14 @@
+
+
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_1nep/models/usermodel.dart';
+import 'package:flutter_1nep/screens/startscreen.dart';
 import 'package:flutter_1nep/services/userservices.dart';
+import 'package:flutter_1nep/screens/customwidgets/loadingscreen.dart';
 
 class AuthProvider {
 
@@ -12,33 +19,46 @@ class AuthProvider {
 
   //PhoneAuthentication
 
-  Future phoneAuthentication(String phone) async {
-    final PhoneVerificationCompleted verificationCompleted = (
-        PhoneAuthCredential credential) async {
-      await auth
-          .signInWithCredential(credential);
+  Future phoneAuthentication(BuildContext context, String phone,GlobalKey<ScaffoldState> scaffoldkey) async {
+
+//auto verify ot when sim in same phone
+    final PhoneVerificationCompleted verified=
+        (AuthCredential authResult){
+          LoadingScreen.showLoadingDialog(context,scaffoldkey);
+          Timer(
+            Duration(seconds: 3),
+                () {
+
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => StartScreen()),
+                          (route) => false);
+            },
+          );
+
     };
 
     final PhoneVerificationFailed verificationFailed = (
         FirebaseAuthException e) {
       print(e.code);
+      FocusScope.of(context).unfocus();
+      SnackBar(content: Text('invalid OTP'));
     };
 
     final PhoneCodeSent codeSent = (String verID, int resendToken) async {
-      verificationId = verID;
-
+      this.verificationId = verID;
       print('codesent!');
     };
 
     final PhoneCodeAutoRetrievalTimeout phoneCodeAutoRetrievalTimeout = (
         String verificationID) {
-      verificationId = verificationID;
+      this.verificationId = verificationID;
     };
 
 
     try {
-      auth.verifyPhoneNumber(phoneNumber: '+91${phone}',
-          verificationCompleted: verificationCompleted,
+      await auth.verifyPhoneNumber(phoneNumber: '+91${phone}',
+          verificationCompleted: verified,
           verificationFailed: verificationFailed,
           codeSent: codeSent,
           codeAutoRetrievalTimeout: phoneCodeAutoRetrievalTimeout,
@@ -49,6 +69,8 @@ class AuthProvider {
     }
   }
 
+
+
 //method for creating user in firestore
   void createUser(String id, String phone) {
     _userServices.createUserData({
@@ -56,5 +78,7 @@ class AuthProvider {
       'phone': phone
     });
   }
+
+
 
 }

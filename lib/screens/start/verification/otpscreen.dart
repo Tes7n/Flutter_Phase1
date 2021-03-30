@@ -41,6 +41,7 @@ class _OtpScreenState extends State<OtpScreen> {
     return  SafeArea(
             child: Scaffold(
               key: _scaffoldkey,
+
               resizeToAvoidBottomInset: false,
               body: Center(
                 child: Container(
@@ -92,16 +93,24 @@ class _OtpScreenState extends State<OtpScreen> {
                               pinAnimationType: PinAnimationType.fade,
                               onSubmit: (pin) async {
                                 try {
+
+
+
                                   PhoneAuthCredential phoneAuthCredential =
                                       PhoneAuthProvider.credential(
                                           verificationId: _auth.verificationId,
                                           smsCode: pin);
 
-                                   final User user = (await _auth.auth.signInWithCredential(phoneAuthCredential)).user;
-                                  //loading
-                                  LoadingScreen.showLoadingDialog(context, _scaffoldkey);
+
+                                  final User user = (await _auth.auth.signInWithCredential(phoneAuthCredential)).user;
+
+
+
                                    //create user data in firestore after registration
                                   _auth.createUser(user.uid,user.phoneNumber);
+                                  //loadingscreen
+                                  LoadingScreen.showLoadingDialog(context, _scaffoldkey);
+
                                   //navigation
                                   if (user != null) {
 
@@ -113,8 +122,9 @@ class _OtpScreenState extends State<OtpScreen> {
                                 }} catch (e) {
 
                                   FocusScope.of(context).unfocus();
-                                  _scaffoldkey.currentState.showSnackBar(
-                                      SnackBar(content: Text('invalid OTP')));
+                                  _scaffoldkey.currentState
+                                      // ignore: deprecated_member_use
+                                      .showSnackBar(SnackBar(content: Text('invalid OTP')));
                                 }
                               }
                             ),
@@ -125,7 +135,10 @@ class _OtpScreenState extends State<OtpScreen> {
                                 width: 220,
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _auth.phoneAuthentication(context,widget.phone,_scaffoldkey);
+
+                                },
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 2.0),
@@ -167,13 +180,13 @@ class _OtpScreenState extends State<OtpScreen> {
                                 horizontal: 60, vertical: 0.0),
                             child: TextButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder: (_, __, ___) => LoginPage(),
-                                    transitionDuration: Duration(seconds: 1),
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   PageRouteBuilder(
+                                //     pageBuilder: (_, __, ___) => LoginPage(),
+                                //     transitionDuration: Duration(seconds: 1),
+                                //   ),
+                                // );
                               },
                               style: ButtonStyle(
                                 backgroundColor:
@@ -220,6 +233,6 @@ class _OtpScreenState extends State<OtpScreen> {
     // TODO: implement initState
     super.initState();
     // _verifyPhone();
-    _auth.phoneAuthentication(widget.phone);
+    _auth.phoneAuthentication(context,widget.phone,_scaffoldkey);
   }
 }
