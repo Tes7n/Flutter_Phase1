@@ -136,6 +136,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               ),
                               TextButton(
                                 onPressed: () {
+
                                   _auth.phoneAuthentication(context,widget.phone,_scaffoldkey);
 
                                 },
