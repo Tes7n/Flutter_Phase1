@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_1nep/models/usermodel.dart';
-import 'package:flutter_1nep/screens/startscreen.dart';
+import 'package:flutter_1nep/screens/start/home/startscreen.dart';
 import 'package:flutter_1nep/services/userservices.dart';
 import 'package:flutter_1nep/screens/customwidgets/loadingscreen.dart';
 

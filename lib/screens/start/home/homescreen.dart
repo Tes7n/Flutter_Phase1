@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_1nep/screens/customwidgets/imageslider.dart';
+import 'package:flutter_1nep/screens/customwidgets/toppickedstore.dart';
 import 'package:flutter_1nep/screens/offerscreen.dart';
 
-import 'customwidgets/brand_colors.dart';
+import '../../customwidgets/brand_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -129,6 +130,10 @@ class _Home3State extends State<HomeScreen> {
                     ),
 //banner
                     ImageSlider(),
+//topPicked
+                    Container(height: 110,
+                        child: TopPickedStore()),
+
                 ],
               ),
             ),

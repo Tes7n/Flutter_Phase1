@@ -4,7 +4,7 @@ import 'package:flutter_1nep/screens/customwidgets/brand_colors.dart';
 
 import 'package:flutter_1nep/screens/bookingsscreen.dart';
 import 'package:flutter_1nep/screens/callchatscreen.dart';
-import 'package:flutter_1nep/screens/homestack.dart';
+import 'package:flutter_1nep/screens/start/home/homestack.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:provider/provider.dart';
 

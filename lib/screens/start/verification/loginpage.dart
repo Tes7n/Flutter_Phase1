@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_1nep/screens/customwidgets/brand_colors.dart';
 import 'package:flutter_1nep/screens/start/verification/otpscreen.dart';
 
-// import 'package:firebase_database/firebase_database.dart';
+
 
 
 
@@ -77,11 +77,6 @@ class LoginPage extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-
-                        // DatabaseReference dbRef = FirebaseDatabase.instance.reference().child('Test');
-                        // dbRef.set('IsConnected');
-
-
                         Navigator.push(
                             context,
                             PageRouteBuilder(

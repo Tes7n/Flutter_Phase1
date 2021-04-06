@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_1nep/provider/authprovider.dart';
 import 'package:flutter_1nep/screens/customwidgets/loadingscreen.dart';
-import 'package:flutter_1nep/screens/startscreen.dart';
+import 'package:flutter_1nep/screens/start/home/startscreen.dart';
 import 'package:flutter_1nep/services/userservices.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import '../../customwidgets/brand_colors.dart';
-import '../../homestack.dart';
+import '../home/homestack.dart';
 import 'loginpage.dart';
 
 class OtpScreen extends StatefulWidget {

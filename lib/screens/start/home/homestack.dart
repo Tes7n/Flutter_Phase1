@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_1nep/screens/customwidgets/brand_colors.dart';
-import 'package:flutter_1nep/screens/startscreen.dart';
-import 'package:flutter_1nep/screens/homescreen.dart';
+import 'package:flutter_1nep/screens/start/home/startscreen.dart';
+import 'package:flutter_1nep/screens/start/home/homescreen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import 'profiledrawer.dart';
+import '../../customwidgets/profiledrawer.dart';
 
 
 class HomeStack extends StatelessWidget {
